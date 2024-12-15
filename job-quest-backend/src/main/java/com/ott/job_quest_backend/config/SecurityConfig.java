@@ -21,6 +21,8 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 @EnableWebSecurity
@@ -37,8 +39,18 @@ public class SecurityConfig {
 
         return http
                 .csrf(AbstractHttpConfigurer::disable)
+                .cors(cors -> cors.configurationSource(request -> {
+                    CorsConfiguration configuration = new CorsConfiguration();
+                    configuration.addAllowedOrigin("http://localhost:4200"); // Allow Angular app
+                    configuration.addAllowedMethod("*"); // Allow all methods
+                    configuration.addAllowedHeader("*"); // Allow all headers
+                    configuration.setAllowCredentials(true); // Allow credentials
+                    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+                    source.registerCorsConfiguration("/**", configuration);
+                    return source.getCorsConfiguration(request);
+                }))
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("api/register", "api/login")
+                        .requestMatchers("/api/register", "/api/login")
                         .permitAll()
                         .anyRequest().authenticated())
                 .formLogin(Customizer.withDefaults())
