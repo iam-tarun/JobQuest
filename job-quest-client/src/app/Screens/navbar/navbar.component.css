@@ -1,0 +1,34 @@
+.navbar {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: end;
+  list-style-type: none;
+}
+
+li {
+  margin: 1rem;
+}
+
+li button {
+  border: none;
+  background-color: white;
+  font-size: larger;
+  cursor: pointer;
+}
+
+li button:hover {
+  color: grey;
+}
+
+.active {
+  color: green;
+}
+
+
+@media (max-width: 768px) {
+  .navbar {
+    grid-auto-flow: row; /* Stack items in a column */
+    justify-content: start; /* Align items to the left (optional) */
+    margin: auto;
+  }
+}
