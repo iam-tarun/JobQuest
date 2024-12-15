@@ -23,6 +23,7 @@ export class SignInComponent {
         console.log(token);
         localStorage.setItem('jwtToken', token);
         this.router.navigate(['/']);
+        this.authService.setLoggedInSubject()
       },
       error: (error) => {
         this.errorMessage = 'Invalid username or password';
