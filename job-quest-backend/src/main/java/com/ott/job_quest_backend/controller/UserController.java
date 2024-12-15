@@ -3,7 +3,11 @@ package com.ott.job_quest_backend.controller;
 import com.ott.job_quest_backend.model.User;
 import com.ott.job_quest_backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
@@ -18,13 +22,15 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestBody User user) {
+    public Map<String, String> login(@RequestBody User user) {
 
-        return service.verify(user);
+        String token = service.verify(user);
+
+            Map<String, String> responseBody = new HashMap<>();
+            responseBody.put("token", token);
+            return responseBody;
+            
     }
-
-
-
 
 
 }
