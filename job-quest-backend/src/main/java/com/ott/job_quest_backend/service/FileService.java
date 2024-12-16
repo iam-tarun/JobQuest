@@ -1,6 +1,5 @@
 package com.ott.job_quest_backend.service;
 
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
