@@ -57,7 +57,7 @@
       <div class="form-group">
         <label for="resume">Resume</label>
         <br>
-        <input type="file" id="resume" required formControlName="resume">
+        <input type="file" id="resume" required (change)="onFileSelected($event)" #fileInput>
       </div>
 
       <div class="form-actions">
