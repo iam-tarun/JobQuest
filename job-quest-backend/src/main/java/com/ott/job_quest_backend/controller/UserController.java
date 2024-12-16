@@ -29,7 +29,7 @@ public class UserController {
             Map<String, String> responseBody = new HashMap<>();
             responseBody.put("token", token);
             return responseBody;
-            
+
     }
 
 
