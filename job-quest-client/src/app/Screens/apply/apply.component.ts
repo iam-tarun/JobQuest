@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ApplicationService } from '../../services/application.service';
 
 @Component({
   selector: 'app-apply',
@@ -8,6 +9,8 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
   styleUrl: './apply.component.css'
 })
 export class ApplyComponent {
+
+  constructor (private applicationsService: ApplicationService) {}
 
   applicationForm = new FormGroup({
     roleName : new FormControl('', Validators.required),
@@ -21,9 +24,42 @@ export class ApplyComponent {
     tag : new FormControl(''),
   })
 
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    this.applicationForm.get('resume')?.setValue(file as any);
+  }
+
 
   onSubmit() {
-    console.log(this.applicationForm.value)
+    if(this.applicationForm.valid) {
+      const formValue = this.applicationForm.value;
+
+      console.log('Form Submitted:', formValue);
+
+    // Access the file
+      const file = formValue.resume; // Attach the file to FormData
+
+      const formData = new FormData();
+      formData.append('resume', file as any); 
+
+      // Append other form fields
+      Object.keys(this.applicationForm.controls).forEach((key) => {
+        if (key !== 'resume') {
+          formData.append(key, this.applicationForm.get(key)?.value || '');
+        }
+      });
+      this.applicationsService.submitApplication(formData).subscribe({
+        next: (response) => {
+          this.applicationForm.reset();
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      })
+    }
+    else {
+      console.log('Form is invalid');
+    }
   }
 
 }
