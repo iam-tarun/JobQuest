@@ -62,7 +62,7 @@ public class ApplicationController {
         return applicationService.updateApplication(application);
     }
 
-    @GetMapping("/application/")
+    @GetMapping("/application")
     public List<Application> fetchApplications() {
         return applicationService.allApplications();
     }
