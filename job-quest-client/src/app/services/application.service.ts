@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Application } from '../models/application';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class ApplicationService {
     return this.http.post(`${this.baseUrl}`, data);
   }
 
-  getApplications(): Observable<any[]> {
+  getApplications(): Observable<Application[]> {
     return this.http.get<any[]>(`${this.baseUrl}`);
   }
 }
