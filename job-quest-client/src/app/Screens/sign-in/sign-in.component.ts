@@ -21,7 +21,7 @@ export class SignInComponent {
     this.authService.login(this.username, this.password).subscribe({
       next: (token) => {
         console.log(token);
-        localStorage.setItem('jwtToken', token);
+        localStorage.setItem('jwtToken', token.token);
         this.router.navigate(['/']);
         this.authService.setLoggedInSubject()
       },
