@@ -31,8 +31,8 @@ public class Application {
     @Enumerated(EnumType.STRING)
     private ApplicationStatus status;
 
-    @Lob
-    private byte[] resume;
+    @NotBlank
+    private String resume;
 
     private String jobDescription;
     private String remarks;
