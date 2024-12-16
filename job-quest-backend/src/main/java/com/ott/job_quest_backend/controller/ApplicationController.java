@@ -1,10 +1,16 @@
 package com.ott.job_quest_backend.controller;
 
 import com.ott.job_quest_backend.model.Application;
+import com.ott.job_quest_backend.model.ApplicationStatus;
 import com.ott.job_quest_backend.service.ApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -14,8 +20,34 @@ public class ApplicationController {
     @Autowired
     private ApplicationService applicationService;
 
-    @PostMapping("/application")
-    public Application createApplication(@RequestBody Application application) {
+    @PostMapping(value="/application", consumes="multipart/form-data")
+    public Application createApplication(
+            @RequestParam("roleName") String roleName,
+            @RequestParam("companyName") String companyName,
+            @RequestParam("tag") String tag,
+            @RequestParam("remarks") String remarks,
+            @RequestParam("jobDescription") String jobDescription,
+            @RequestParam("platform") String platform,
+            @RequestParam("status") ApplicationStatus status,
+            @RequestParam("resume") MultipartFile resume,
+            @RequestParam("dateOfApplication") String date
+
+    ) throws IOException, ParseException {
+
+        byte[] resumeContent = resume.getBytes();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        Date dateOfApplication = formatter.parse(date);
+        Application application = new Application();
+        application.setRoleName(roleName);
+        application.setCompanyName(companyName);
+        application.setTag(tag);
+        application.setStatus(status);
+        application.setDateOfApplication(dateOfApplication);
+        application.setRemarks(remarks);
+        application.setJobDescription(jobDescription);
+        application.setPlatform(platform);
+        application.setResume(resumeContent);
+
         return applicationService.createApplication(application);
     }
 
