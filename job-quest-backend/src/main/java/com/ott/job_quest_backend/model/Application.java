@@ -32,7 +32,7 @@ public class Application {
     private ApplicationStatus status;
 
     @Lob
-    private String resume;
+    private byte[] resume;
 
     private String jobDescription;
     private String remarks;
