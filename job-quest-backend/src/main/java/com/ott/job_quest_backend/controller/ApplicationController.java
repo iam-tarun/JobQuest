@@ -3,10 +3,12 @@ package com.ott.job_quest_backend.controller;
 import com.ott.job_quest_backend.model.Application;
 import com.ott.job_quest_backend.model.ApplicationStatus;
 import com.ott.job_quest_backend.service.ApplicationService;
+import com.ott.job_quest_backend.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -19,6 +21,9 @@ public class ApplicationController {
 
     @Autowired
     private ApplicationService applicationService;
+
+    @Autowired
+    private FileService fileService;
 
     @PostMapping(value="/application", consumes="multipart/form-data")
     public Application createApplication(
@@ -34,7 +39,7 @@ public class ApplicationController {
 
     ) throws IOException, ParseException {
 
-        byte[] resumeContent = resume.getBytes();
+
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         Date dateOfApplication = formatter.parse(date);
         Application application = new Application();
@@ -46,7 +51,8 @@ public class ApplicationController {
         application.setRemarks(remarks);
         application.setJobDescription(jobDescription);
         application.setPlatform(platform);
-        application.setResume(resumeContent);
+        String resumePath = fileService.saveFile(resume, companyName, roleName);
+        application.setResume(resumePath);
 
         return applicationService.createApplication(application);
     }
