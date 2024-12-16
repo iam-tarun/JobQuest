@@ -62,9 +62,9 @@ public class ApplicationController {
         return applicationService.updateApplication(application);
     }
 
-    @GetMapping("/application/{user}")
-    public List<Application> findApplicationsByUserId(@PathVariable int user) {
-        return applicationService.applicationsByUserId(user);
+    @GetMapping("/application/")
+    public List<Application> fetchApplications() {
+        return applicationService.allApplications();
     }
 
     @DeleteMapping("/application/{id}")
