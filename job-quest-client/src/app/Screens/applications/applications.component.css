@@ -1,0 +1,30 @@
+.tables {
+  width: 80%;
+  margin: auto;
+  margin-top: 2rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  color: #a9a9a9;
+  box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1); /* Shadow for the floating effect */
+  border-radius: 1rem; /* Rounded corners for modern look */
+  overflow: hidden;
+  background-color: white;
+}
+
+th, td {
+  border: 1px solid #2e2e2e;
+  padding: 1rem;
+  text-align: left;
+}
+
+th {
+  background-color: #2e2e2e;
+  font-weight: bold;
+}
+
+td {
+  color: #101010;
+}
