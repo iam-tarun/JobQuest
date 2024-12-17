@@ -1,156 +1,118 @@
+Here’s an updated **README** for your **JobQuest** repository:
+
+---
+
 # JobQuest
 
-JobQuest is a web application designed to help users organize and track their job applications efficiently. It provides features like adding job details, filtering applications, setting reminders, and visualizing application status through a dashboard.
+**JobQuest** is a web application that helps users organize, track, and manage their job applications efficiently. It offers tools to log applications, visualize progress, and keep reminders for follow-ups.
 
 ---
 
 ## Features
 
-- **Dashboard**:
-  - View a summary of total applications, status breakdown, and recent applications.
-- **Job Application Management**:
-  - Add, edit, and delete job applications with details like job title, company name, date applied, status, and notes.
-- **Filters and Search**:
-  - Filter applications by status, company, or date range.
-  - Search applications by job title or keywords.
-- **Notifications**:
-  - Set reminders for follow-ups and interviews (optional).
-- **Analytics (Optional)**:
-  - Visualize metrics like application trends, response rates, and offer ratios.
-- **User Authentication**:
-  - Secure login and registration for users.
+- **Dashboard**: View application summaries and statuses at a glance.
+- **Job Tracking**: Add, edit, and delete job applications with relevant details (job title, company, date, status, notes).
+- **Search & Filters**: Search by job title, filter by status or date range. (In Development)
+- **Reminders**: Set follow-up and interview reminders. (In Development)
+- **Analytics**: Track application trends, response rates, and success ratios. (In Development)
+- **Authentication**: Secure login and registration.
 
 ---
 
 ## Tech Stack
 
 ### Backend
-
-- **Spring Boot**
-  - RESTful APIs for managing job applications and user data.
-  - Spring Data JPA for database interactions.
-  - Authentication and authorization using Spring Security (optional).
-- **Database**
-  - MySQL (or H2 for development).
+- **Spring Boot**: RESTful APIs for job application management.
+- **Spring Data JPA**: For database interactions.
+- **Spring Security**: Optional user authentication.
+- **MySQL**: Primary database (H2 for development).
 
 ### Frontend
-
-- **Angular**
-  - Dynamic and interactive user interface.
-  - Angular Material or Bootstrap for responsive design.
-- **Charts**
-  - ng2-charts or Chart.js for data visualization.
+- **Angular**: Dynamic, component-based UI.
+- **Angular Material**: Responsive and modern design.
+- **Chart.js**: For visualizing job trends.
 
 ---
 
 ## Installation
 
 ### Prerequisites
+- Java 17+, Maven
+- Node.js, Angular CLI
+- MySQL Database
 
-- **Backend**: Java 17+, Maven, MySQL (or H2 for development).
-- **Frontend**: Node.js, Angular CLI.
-
-### Steps to Run the Project
+### Steps to Run
 
 1. **Clone the Repository**:
-
    ```bash
-   git clone https://github.com/your-username/jobquest.git
-   cd jobquest
+   git clone https://github.com/iam-tarun/JobQuest.git
+   cd JobQuest
+   ```
+2. **Generate the Secret Key**
+   generate the secret in backed using secretKeyGenerator file.
+
+3. **Backend Setup**:
+   ```bash
+   cd job-quest-backend
+   # Update `application.properties` with your MySQL credentials and jwt secret token.
+   mvn spring-boot:run
    ```
 
-2. **Backend Setup**:
+4. **Frontend Setup**:
+   ```bash
+   cd ../job-quest-client
+   npm install
+   ng serve
+   ```
 
-   - Navigate to the `backend` folder:
-     ```bash
-     cd backend
-     ```
-   - Update `application.properties` with your database credentials.
-   - Build and run the Spring Boot application:
-     ```bash
-     mvn spring-boot:run
-     ```
-
-3. **Frontend Setup**:
-
-   - Navigate to the `frontend` folder:
-     ```bash
-     cd ../frontend
-     ```
-   - Install dependencies:
-     ```bash
-     npm install
-     ```
-   - Run the Angular application:
-     ```bash
-     ng serve
-     ```
-
-4. **Access the Application**:
-
-   - Open your browser and navigate to `http://localhost:4200`.
+5. **Access the App**: Open `http://localhost:4200`.
 
 ---
 
 ## API Endpoints
 
-### Job Application Endpoints
+### Job Application APIs
+- `GET /api/application`: Fetch all applications.
+- `POST /api/application`: Add a new application.
+- `PUT /api/applications/{id}`: Update an application. (In Development)
+- `DELETE /api/applications/{id}`: Delete an application. (In Development)
 
-- `GET /api/applications`: Retrieve all job applications.
-- `POST /api/applications`: Add a new job application.
-- `PUT /api/applications/{id}`: Update an existing application.
-- `DELETE /api/applications/{id}`: Delete an application.
-
-### User Authentication Endpoints (Optional)
-
-- `POST /api/auth/register`: Register a new user.
-- `POST /api/auth/login`: Authenticate a user and retrieve a token.
+### Authentication (Optional)
+- `POST /api/register`: User registration.
+- `POST /api/login`: User login.
 
 ---
 
 ## Future Enhancements
-
-- **Data Export**:
-  - Allow users to export their job application data to a CSV or Excel file.
-- **Integration with Job Portals**:
-  - Automatically fetch job details from LinkedIn or other job portals.
-- **Mobile-Friendly Design**:
-  - Ensure a seamless experience on mobile devices.
-- **Collaboration**:
-  - Share application status with mentors or friends.
+- Export application data to CSV/Excel.
+- Integrate with job portals like LinkedIn.
+- Improve mobile responsiveness.
+- Collaborate and share application status with peers.
 
 ---
 
 ## Contributing
-
-Contributions are welcome! To contribute:
-
-1. Fork the repository.
-2. Create a new branch for your feature or bug fix:
+1. Fork the repo and create a new branch:
    ```bash
-   git checkout -b feature-name
+   git checkout -b feature-branch
    ```
-3. Commit your changes:
+2. Commit changes and push:
    ```bash
-   git commit -m "Add new feature"
+   git commit -m "Add feature"
+   git push origin feature-branch
    ```
-4. Push to your branch:
-   ```bash
-   git push origin feature-name
-   ```
-5. Open a pull request.
+3. Submit a pull request.
 
 ---
 
 ## License
-
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the **MIT License**.
 
 ---
 
 ## Contact
+For suggestions or issues, reach out via [GitHub Issues](https://github.com/iam-tarun/JobQuest/issues).
 
-For any questions or suggestions, feel free to contact:
+--- 
 
-- **Email**: [tarunteja2810@gmail.com](mailto\:tarunteja2810@gmail.com)
-- **GitHub**: [iam-tarun](https://github.com/iam-tarun)
+Let me know if you need further tweaks! 🚀
