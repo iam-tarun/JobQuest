@@ -10,7 +10,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ApplicationService {
@@ -43,6 +45,14 @@ public class ApplicationService {
     public List<Application> applicationsByStatus(ApplicationStatus status) {
         int userId = userService.currentUserId();
         return repo.findByUserIdAndStatus(userId, status);
+    }
+
+    public Map<String, Integer> applicationStats() {
+        int userId = userService.currentUserId();
+        Map<String, Integer> result = new HashMap<>();
+        result.put("total", repo.findByUserId(userId).size());
+        result.put("rejected", repo.findByUserIdAndStatus(userId, ApplicationStatus.REJECTED).size());
+        return result;
     }
 
     public void deleteApplication(int id) {

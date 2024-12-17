@@ -14,6 +14,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
@@ -65,6 +66,11 @@ public class ApplicationController {
     @GetMapping("/application")
     public List<Application> fetchApplications() {
         return applicationService.allApplications();
+    }
+
+    @GetMapping("/application/stats")
+    public Map<String, Integer> applicationStats() {
+        return applicationService.applicationStats();
     }
 
     @DeleteMapping("/application/{id}")
