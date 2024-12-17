@@ -3,5 +3,6 @@
       <li><button routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</button></li>
       <li><button routerLink="/apply" routerLinkActive="active">Apply</button></li>
       <li><button routerLink="/applications" routerLinkActive="active">Applications</button></li>
+      <li><button (click)="signout()" >Sign Out</button></li>
     </ul>
   </nav>
