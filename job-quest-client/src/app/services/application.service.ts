@@ -19,4 +19,8 @@ export class ApplicationService {
   getApplications(): Observable<Application[]> {
     return this.http.get<any[]>(`${this.baseUrl}`);
   }
+
+  getApplicationStats(): Observable<{"total": number, "rejected": number}> {
+    return this.http.get<{"total": number, "rejected": number}>(`${this.baseUrl}/stats`);
+  }
 }
