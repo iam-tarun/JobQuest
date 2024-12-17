@@ -1,7 +1,3 @@
-Here’s an updated **README** for your **JobQuest** repository:
-
----
-
 # JobQuest
 
 **JobQuest** is a web application that helps users organize, track, and manage their job applications efficiently. It offers tools to log applications, visualize progress, and keep reminders for follow-ups.
