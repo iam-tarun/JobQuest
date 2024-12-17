@@ -17,7 +17,7 @@ public class FileService {
         }
 
         String originalFileName = file.getOriginalFilename();
-        String filePath = uploadDir + File.separator + System.currentTimeMillis() + "-" + originalFileName + "-" + companyName + "-" + roleName;
+        String filePath = uploadDir + File.separator + System.currentTimeMillis() + "-" + companyName + "-" + roleName +"-" + originalFileName;
 
         File resume = new File(filePath);
         file.transferTo(resume);

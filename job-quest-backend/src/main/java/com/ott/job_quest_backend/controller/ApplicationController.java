@@ -40,7 +40,7 @@ public class ApplicationController {
     ) throws IOException, ParseException {
 
 
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date dateOfApplication = formatter.parse(date);
         Application application = new Application();
         application.setRoleName(roleName);
