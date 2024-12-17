@@ -7,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-
+  totalApplications = 50;
+  rejectedApplications = 10;
+  inProcessApplications = 25;
+  interviewApplications = 15;
 }
