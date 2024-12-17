@@ -40,7 +40,7 @@ public class ApplicationController {
     ) throws IOException, ParseException {
 
 
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date dateOfApplication = formatter.parse(date);
         Application application = new Application();
         application.setRoleName(roleName);
@@ -62,9 +62,9 @@ public class ApplicationController {
         return applicationService.updateApplication(application);
     }
 
-    @GetMapping("/application/{user}")
-    public List<Application> findApplicationsByUserId(@PathVariable int user) {
-        return applicationService.applicationsByUserId(user);
+    @GetMapping("/application")
+    public List<Application> fetchApplications() {
+        return applicationService.allApplications();
     }
 
     @DeleteMapping("/application/{id}")

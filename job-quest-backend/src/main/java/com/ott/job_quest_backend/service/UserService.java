@@ -1,11 +1,13 @@
 package com.ott.job_quest_backend.service;
 
+import com.ott.job_quest_backend.model.MyUserDetails;
 import com.ott.job_quest_backend.model.User;
 import com.ott.job_quest_backend.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -36,5 +38,11 @@ public class UserService {
         }
 
         return "Fail";
+    }
+
+    public int currentUserId() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        MyUserDetails userDetails = (MyUserDetails) authentication.getPrincipal();
+        return userDetails.getUserId();
     }
 }

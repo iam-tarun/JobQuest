@@ -18,12 +18,14 @@ public class ApplicationService {
     @Autowired
     private ApplicationRepo repo;
 
+    @Autowired
+    private UserService userService;
+
     public Application createApplication(Application application) {
         if (application.getUser() == null) {
-            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-            MyUserDetails userDetails = (MyUserDetails) authentication.getPrincipal();
+            int userId = userService.currentUserId();
             User user = new User();
-            user.setId(userDetails.getUserId());
+            user.setId(userId);
             application.setUser(user);
         }
         return repo.save(application);
@@ -33,12 +35,14 @@ public class ApplicationService {
         return repo.save(application);
     }
 
-    public List<Application> applicationsByUserId(int user) {
-        return repo.findByUserId(user);
+    public List<Application> allApplications() {
+        int userId = userService.currentUserId();
+        return repo.findByUserId(userId);
     }
 
-    public List<Application> applicationsByStatus(ApplicationStatus status, int user) {
-        return repo.findByUserIdAndStatus(user, status);
+    public List<Application> applicationsByStatus(ApplicationStatus status) {
+        int userId = userService.currentUserId();
+        return repo.findByUserIdAndStatus(userId, status);
     }
 
     public void deleteApplication(int id) {
