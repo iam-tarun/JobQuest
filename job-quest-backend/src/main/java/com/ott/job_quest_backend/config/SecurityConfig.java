@@ -41,7 +41,10 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(cors -> cors.configurationSource(request -> {
                     CorsConfiguration configuration = new CorsConfiguration();
-                    configuration.addAllowedOrigin("http://localhost:4200"); // Allow Angular app
+                    configuration.addAllowedOrigin("http://jobquest-frontend-1:80");
+                    configuration.addAllowedOrigin("http://frontend:80");
+                    configuration.addAllowedOrigin("http://localhost:4200");
+                    configuration.addAllowedOrigin("http://localhost:80");// Allow Angular app
                     configuration.addAllowedMethod("*"); // Allow all methods
                     configuration.addAllowedHeader("*"); // Allow all headers
                     configuration.setAllowCredentials(true); // Allow credentials
