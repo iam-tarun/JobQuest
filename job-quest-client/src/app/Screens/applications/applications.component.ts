@@ -36,6 +36,14 @@ export class ApplicationsComponent implements OnInit {
   saveChanges(idx: number) {
     this.isEditing[idx] = false;
     console.log(idx);
+    this.applicationService.updateApplication(this.applications[idx]).subscribe({
+      next: (res) => {
+        this.applications[idx] = res;
+      },
+      error: (e) => {
+        console.log(e);
+      }
+    })
   }
 
 

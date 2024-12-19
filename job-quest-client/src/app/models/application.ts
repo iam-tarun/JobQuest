@@ -10,7 +10,7 @@ export class Application {
   platform: string;
   status: ApplicationStatus;
   dateOfApplication: Date;
-  resumePath: string;
+  resume: string;
   createdAt: Date;
   updatedAt: Date;
 
@@ -24,7 +24,7 @@ export class Application {
     platform: string,
     status: ApplicationStatus,
     dateOfApplication: Date,
-    resumePath: string,
+    resume: string,
     createdAt: Date,
     updatedAt: Date,
     id: number
@@ -37,7 +37,7 @@ export class Application {
     this.platform = platform;
     this.status = status;
     this.dateOfApplication = dateOfApplication;
-    this.resumePath = resumePath;
+    this.resume = resume;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
     this.id = id;

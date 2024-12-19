@@ -15,6 +15,7 @@
           <th>Tag</th>
           <th>Platfrom</th>
           <th>Job Description</th>
+          <th>Resume</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -28,6 +29,10 @@
           <td> <input type="text" [(ngModel)]="application.tag" [disabled]="!isEditing[i]" /> </td>
           <td> <input type="text" [(ngModel)]="application.platform" [disabled]="!isEditing[i]" /> </td>
           <td> <input type="text" [(ngModel)]="application.jobDescription" [disabled]="!isEditing[i]" /> </td>
+          <td  ><p  >
+            {{application.resume}}
+          </p>
+          </td>
           <td>
             <mat-icon  class="icon" *ngIf="!isEditing[i]" (click)="enableEditing(i)" >edit</mat-icon>
             <mat-icon class="icon" *ngIf="isEditing[i]" (click)="saveChanges(i)" >save</mat-icon>
