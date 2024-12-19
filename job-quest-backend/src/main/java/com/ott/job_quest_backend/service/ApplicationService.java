@@ -34,6 +34,10 @@ public class ApplicationService {
     }
 
     public Application updateApplication(Application application) {
+        int userId = userService.currentUserId();
+        User user = new User();
+        user.setId(userId);
+        application.setUser(user);
         return repo.save(application);
     }
 
