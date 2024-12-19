@@ -1,4 +1,4 @@
-import { NgIf } from '@angular/common';
+import { NgClass, NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './Screens/navbar/navbar.component';
@@ -9,7 +9,8 @@ import { AuthService } from './services/auth.service';
   imports: [
     RouterOutlet,
     NgIf,
-    NavbarComponent
+    NavbarComponent,
+    NgClass
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'

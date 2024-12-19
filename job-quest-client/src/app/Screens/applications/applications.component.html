@@ -15,21 +15,27 @@
           <th>Tag</th>
           <th>Platfrom</th>
           <th>Job Description</th>
+          <th>Resume</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let application of applications; let i = index" >
-          <td>{{ application.roleName }}</td>
-          <td>{{ application.companyName }}</td>
-          <td>{{ application.dateOfApplication }}</td>
-          <td>{{ application.status }}</td>
-          <td>{{ application.remarks }}</td>
-          <td>{{ application.tag }}</td>
-          <td>{{ application.platform }}</td>
-          <td>{{ application.jobDescription }}</td>
+          <td> <input type="text" [(ngModel)]="application.roleName" [disabled]="!isEditing[i]" /> </td>
+          <td> <input type="text" [(ngModel)]="application.companyName" [disabled]="!isEditing[i]" /> </td>
+          <td> <input type="text" [(ngModel)]="application.dateOfApplication" [disabled]="!isEditing[i]" /> </td>
+          <td> {{ application.status }}</td>
+          <td> <input type="text" [(ngModel)]="application.remarks" [disabled]="!isEditing[i]" /> </td>
+          <td> <input type="text" [(ngModel)]="application.tag" [disabled]="!isEditing[i]" /> </td>
+          <td> <input type="text" [(ngModel)]="application.platform" [disabled]="!isEditing[i]" /> </td>
+          <td> <input type="text" [(ngModel)]="application.jobDescription" [disabled]="!isEditing[i]" /> </td>
+          <td  ><p  >
+            {{application.resume}}
+          </p>
+          </td>
           <td>
-            <mat-icon  class="icon" >edit</mat-icon>
+            <mat-icon  class="icon" *ngIf="!isEditing[i]" (click)="enableEditing(i)" >edit</mat-icon>
+            <mat-icon class="icon" *ngIf="isEditing[i]" (click)="saveChanges(i)" >save</mat-icon>
             <mat-icon (click)="deleteApplication(application.id)" class="icon" >delete</mat-icon> </td>
         </tr>
       </tbody>

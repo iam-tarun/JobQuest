@@ -24,6 +24,10 @@ export class ApplicationService {
     return this.http.get<{"total": number, "rejected": number}>(`${this.baseUrl}/stats`);
   }
 
+  updateApplication(application: Application): Observable<Application> {
+    return this.http.put<Application>(this.baseUrl, application);
+  }
+
   deleteApplication(id: number): Observable<void>{
     return this.http.delete<void>(this.baseUrl+'/'+id);
   }

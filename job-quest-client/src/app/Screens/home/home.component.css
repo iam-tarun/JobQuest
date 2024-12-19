@@ -1,48 +1,43 @@
-
-
-/* Header Section */
-.header {
-  text-align: center;
-  padding: 20px;
-  background-color: #1e3a8a; /* Primary Color */
-  color: white;
+.home-screen {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-areas:
+    "graph graph graph"
+    "applied inprogress rejected";
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 2fr 1fr;
+  background-color: #242629;
 }
 
-.header h1 {
-  margin: 0;
-  font-size: 28px;
+.graph {
+  grid-area: graph;
+  background-color: #1a1a1a;
+  margin: 10px;
+  border-radius: 10px;
 }
 
-.header p {
-  font-size: 16px;
+.total-apps {
+  grid-area: applied;
 }
 
-/* Stats Section */
-.stats-section {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  margin: 20px;
+.in-process-apps {
+  grid-area: inprogress;
+}
+
+.rejected-apps {
+  grid-area: rejected;
 }
 
 .stat-card {
-  background-color: white;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  padding: 20px;
-  width: 200px;
-  text-align: center;
+  background-color: #1a1a1a;
   margin: 10px;
+  border-radius: 10px;
+  padding: 10px;
+  color: #e6e6e6;
+  text-align: center;
 }
 
-.stat-card h2 {
-  font-size: 18px;
-  color: #333;
-}
-
-.stat-card p {
-  font-size: 24px;
-  font-weight: bold;
-  margin: 10px 0 0;
-  color: #1e3a8a; /* Primary Color */
+p {
+  font-size: 35px;
 }
