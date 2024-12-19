@@ -16,6 +16,15 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<div class="main-wrapper" >
+  <div class="header" >
+    <h1>JOB QUEST</h1>
+  </div>
+  <div class="nav-wrapper" *ngIf="isAuthenticated">
+    <app-navbar  ></app-navbar>
+  </div>
+  <div class="content-wrapper" ><router-outlet /></div>
+  <div class="footer-wrapper" ></div>
+</div>
 
-<app-navbar *ngIf="isAuthenticated" ></app-navbar>
-<router-outlet />
+

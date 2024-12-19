@@ -1,8 +1,10 @@
   <nav >
     <ul class="navbar">
-      <li><button routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</button></li>
-      <li><button routerLink="/apply" routerLinkActive="active">Apply</button></li>
-      <li><button routerLink="/applications" routerLinkActive="active">Applications</button></li>
-      <li><button (click)="signout()" >Sign Out</button></li>
+      <li routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</li>
+      <li routerLink="/apply" routerLinkActive="active">Apply</li>
+      <li routerLink="/applications" routerLinkActive="active">Applications</li>
     </ul>
+    <div class="bottom" >
+      <span (click)="signout()" >Sign Out</span>
+    </div>
   </nav>

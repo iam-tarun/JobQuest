@@ -1,7 +1,7 @@
 import { ApplicationStatus } from "../enums/application-status";
 
 export class Application {
-  id?: number;
+  id: number;
   roleName: string;
   companyName: string;
   tag: string;
@@ -26,7 +26,8 @@ export class Application {
     dateOfApplication: Date,
     resumePath: string,
     createdAt: Date,
-    updatedAt: Date
+    updatedAt: Date,
+    id: number
   ) {
     this.roleName = roleName;
     this.companyName = companyName;
@@ -39,6 +40,7 @@ export class Application {
     this.resumePath = resumePath;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
+    this.id = id;
   }
 
 }

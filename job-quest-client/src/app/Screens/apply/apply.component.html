@@ -7,65 +7,61 @@
     <form class="job-form" [formGroup]="applicationForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="role">Role</label>
-        <br>
-        <input type="text" id="role" placeholder="e.g, Frontend Engineer, Software Engineer" required formControlName="roleName" >
+        <input type="text" id="role" placeholder="e.g, Frontend Engineer, Software Engineer" required formControlName="roleName">
       </div>
+      <hr>
       <div class="form-group">
         <label for="company">Company</label>
-        <br>
         <input type="text" id="company" placeholder="e.g, Microsoft, Apple" required formControlName="companyName">
       </div>
+      <hr>
       <div class="form-group">
         <label for="platform">Platform</label>
-        <br>
         <input type="text" id="platform" placeholder="e.g, Linkedin" required formControlName="platform">
       </div>
+      <hr>
       <div class="form-group">
         <label for="jobDescription">Job Description</label>
-        <br>
-        <input type="text" id="jobDescription"  required formControlName="jobDescription">
+        <input type="text" id="jobDescription" required formControlName="jobDescription">
       </div>
+      <hr>
       <div class="form-group">
         <label for="remarks">Remarks</label>
-        <br>
-        <input type="text" id="remarks" formControlName="remarks" >
+        <input type="text" id="remarks" formControlName="remarks">
       </div>
+      <hr>
       <div class="form-group">
         <label for="tag">Tag</label>
-        <br>
         <input type="text" id="tag" formControlName="tag">
       </div>
+      <hr>
       <div class="form-group">
         <label for="status">Application Status</label>
-        <br>
-        <select value="" id="status" required formControlName="status" >
+        <select id="status" required formControlName="status">
           <option value="">Select Status</option>
           <option value="APPLIED">Applied</option>
           <option value="IN_PROCESS">In Process</option>
           <option value="INTERVIEWS">Interviews</option>
           <option value="REJECTED">Rejected</option>
-          <option value="NOT_APPLIED">
-            Not Applied
-          </option>
+          <option value="NOT_APPLIED">Not Applied</option>
         </select>
       </div>
+      <hr>
       <div class="form-group">
         <label for="doa">Date of Application</label>
-        <br>
         <input type="date" id="doa" required formControlName="dateOfApplication">
       </div>
+      <hr>
       <div class="form-group">
         <label for="resume">Resume</label>
-        <br>
         <input type="file" id="resume" required (change)="onFileSelected($event)" #fileInput>
       </div>
+      <hr>
 
       <div class="form-actions">
+        <button type="reset" class="btn-reset">Reset</button>
         <button type="submit" class="btn-submit">Submit</button>
-        <button type="reset" class="btn-reset" >Reset</button>
       </div>
-
     </form>
   </div>
-
 </div>
