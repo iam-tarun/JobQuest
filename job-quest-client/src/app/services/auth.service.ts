@@ -8,7 +8,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class AuthService {
 
-  private loginUrl = 'http://localhost:8080/api/login';
+  private loginUrl = 'http://backend:8080/api/login';
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
   isLoggedIn$ = this.isLoggedInSubject.asObservable();
 
@@ -37,5 +37,9 @@ export class AuthService {
   checkLoginStatus(): void {
     const token = localStorage.getItem('jwtToken');
     this.isLoggedInSubject.next(!!token);
+  }
+
+  signup(user: any): Observable<any> {
+    return this.http.post<any>("http://backend:8080/api/register", user);
   }
 }

@@ -8,7 +8,7 @@ import { Application } from '../models/application';
 })
 export class ApplicationService {
 
-  private baseUrl = 'http://localhost:8080/api/application';
+  private baseUrl = 'http://backend:8080/api/application';
 
   constructor(private http: HttpClient) { }
 
