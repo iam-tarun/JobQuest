@@ -2,20 +2,21 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private loginUrl = 'http://localhost:8080/api/login';
+  private loginUrl = environment.apiUrl
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
   isLoggedIn$ = this.isLoggedInSubject.asObservable();
 
   constructor(private http: HttpClient, private router: Router) {}
 
   login(username: string, passwordHash: string): Observable<any> {
-    return this.http.post<string>(this.loginUrl, {username, passwordHash});
+    return this.http.post<string>(this.loginUrl+'/login', {username, passwordHash});
   }
 
   setLoggedInSubject() {
