@@ -43,7 +43,7 @@ tr:last-child td {
   margin: 1rem auto;
 }
 
-input {
+#filterInput {
   padding: 10px;
   width: 100%;
   max-width: 500px;
@@ -54,4 +54,14 @@ input {
 .icon {
   margin-inline: 0.15rem;
   cursor: pointer;
+}
+
+td input {
+  border: none;
+  background-color: transparent;
+  font-size: inherit;
+  font-family: inherit;
+  color: inherit;
+  width: 100%;
+  padding: 0;
 }
