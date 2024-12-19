@@ -1,0 +1,33 @@
+.main-wrapper {
+  display: grid;
+  grid-template-areas:
+  "sidebar header"
+  "sidebar main"
+  "footer footer";
+  grid-template-columns: 200px auto;
+  height: 100vh;
+  grid-template-rows: 80px 1fr 60px;
+}
+
+.header { 
+  grid-area: header;
+  background-color: #242629;
+  text-align: center;
+  color: #c3c3c3;
+  padding-bottom: 1rem;
+}
+
+.nav-wrapper {
+  grid-area: sidebar;
+  background-color: #303336;
+}
+
+.content-wrapper {
+  grid-area: main;
+  background-color: white;
+}
+
+.footer-wrapper {
+  grid-area: footer;
+  background-color: #242629;
+}

@@ -1,22 +1,25 @@
-<div>
-  <section class="tables" >
+  <section class="table-wrapper" >
+    <div class="search-wrapper" >
+      <div class="search-container" >
+        <input type="text" id="filterInput" placeholder="Search by date, status, platform, company, or tags...">
+      </div>
+    </div>
     <table>
       <thead>
         <tr>
-          <th>#</th>
           <th>Role</th>
           <th>Company</th>
-          <th>Date of Applicaton</th>
+          <th>Date</th>
           <th>Status</th>
           <th>Remarks</th>
           <th>Tag</th>
           <th>Platfrom</th>
           <th>Job Description</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let application of applications; let i = index" >
-          <td>{{i+1}}</td>
           <td>{{ application.roleName }}</td>
           <td>{{ application.companyName }}</td>
           <td>{{ application.dateOfApplication }}</td>
@@ -25,8 +28,10 @@
           <td>{{ application.tag }}</td>
           <td>{{ application.platform }}</td>
           <td>{{ application.jobDescription }}</td>
+          <td>
+            <mat-icon  class="icon" >edit</mat-icon>
+            <mat-icon (click)="deleteApplication(application.id)" class="icon" >delete</mat-icon> </td>
         </tr>
       </tbody>
     </table>
   </section>
-</div>
