@@ -32,4 +32,8 @@ export class ApplicationService {
   deleteApplication(id: number): Observable<void>{
     return this.http.delete<void>(this.baseUrl+'/application/'+id);
   }
+
+  openResume(id: number): Observable<Blob>{
+    return this.http.get(this.baseUrl+'/application/resume/'+id, {responseType: 'blob'});
+  }
 }

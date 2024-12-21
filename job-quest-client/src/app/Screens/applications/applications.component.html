@@ -29,9 +29,7 @@
           <td> <input type="text" [(ngModel)]="application.tag" [disabled]="!isEditing[i]" /> </td>
           <td> <input type="text" [(ngModel)]="application.platform" [disabled]="!isEditing[i]" /> </td>
           <td> <input type="text" [(ngModel)]="application.jobDescription" [disabled]="!isEditing[i]" /> </td>
-          <td  ><p  >
-            {{application.resume}}
-          </p>
+          <td (click)="openResume(application.id)" > open
           </td>
           <td>
             <mat-icon  class="icon" *ngIf="!isEditing[i]" (click)="enableEditing(i)" >edit</mat-icon>

@@ -67,4 +67,16 @@ export class ApplicationsComponent implements OnInit {
     });
   }
 
+  openResume(id: number) {
+    this.applicationService.openResume(id).subscribe({
+      next: (blob: Blob) => {
+        const link = URL.createObjectURL(blob);
+        const tab = window.open(link, '_blank');
+        if (tab) {
+          tab.document.title = 'Resume';
+        }
+      }
+    })
+  }
+
 }
