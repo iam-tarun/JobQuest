@@ -24,6 +24,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import java.util.Arrays;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -41,7 +43,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(cors -> cors.configurationSource(request -> {
                     CorsConfiguration configuration = new CorsConfiguration();
-                    configuration.addAllowedOrigin("http://localhost:4200"); // Allow Angular app
+                    configuration.setAllowedOrigins(Arrays.asList("http://127.0.0.1:4200", "http://multi-app-nginx:80", "http://127.0.0.1:80", "http://localhost:80", "http://localhost:4200")); // Allow Angular app
                     configuration.addAllowedMethod("*"); // Allow all methods
                     configuration.addAllowedHeader("*"); // Allow all headers
                     configuration.setAllowCredentials(true); // Allow credentials

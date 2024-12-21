@@ -21,6 +21,14 @@ public class MyUserDetails implements UserDetails {
         return Collections.singleton(new SimpleGrantedAuthority("USER"));
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @Override
     public String getPassword() {
         return user.getPasswordHash();
