@@ -16,6 +16,7 @@
             "outputPath": "dist/job-quest-client",
             "index": "src/index.html",
             "browser": "src/main.ts",
+            "baseHref": "/jobquest/",
             "polyfills": [
               "zone.js"
             ],
@@ -29,8 +30,7 @@
             "styles": [
               "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles.css"
-            ],
-            "scripts": []
+            ]
           },
           "configurations": {
             "production": {
