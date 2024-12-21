@@ -43,7 +43,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(cors -> cors.configurationSource(request -> {
                     CorsConfiguration configuration = new CorsConfiguration();
-                    configuration.setAllowedOrigins(Arrays.asList("http://127.0.0.1:4200", "http://multi-app-nginx:80", "http://127.0.0.1:80", "http://localhost:80", "http://localhost:4200")); // Allow Angular app
+                    configuration.setAllowedOrigins(Arrays.asList("http://192.168.1.42:80", "http://multi-app-nginx:80", "http://127.0.0.1:80", "http://localhost:80", "http://localhost:4200")); // Allow Angular app
                     configuration.addAllowedMethod("*"); // Allow all methods
                     configuration.addAllowedHeader("*"); // Allow all headers
                     configuration.setAllowCredentials(true); // Allow credentials
