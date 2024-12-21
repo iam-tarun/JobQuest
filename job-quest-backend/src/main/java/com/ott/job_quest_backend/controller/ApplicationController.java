@@ -5,11 +5,18 @@ import com.ott.job_quest_backend.model.ApplicationStatus;
 import com.ott.job_quest_backend.service.ApplicationService;
 import com.ott.job_quest_backend.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -66,6 +73,46 @@ public class ApplicationController {
     @GetMapping("/application")
     public List<Application> fetchApplications() {
         return applicationService.allApplications();
+    }
+
+    @GetMapping("/application/resume/{id}")
+    public ResponseEntity<Resource> downloadResume(@PathVariable Integer id) {
+        try {
+            // Retrieve file from service
+            File resume = applicationService.getResume(id);
+
+            // Validate file
+            if (resume == null || !resume.exists()) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+            }
+
+            // Load file as Resource
+            Path path = Paths.get(resume.getAbsolutePath());
+            Resource resource = new UrlResource(path.toUri());
+            if (!resource.exists() || !resource.isReadable()) {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+            }
+
+            // Set Content-Disposition header for download
+            String contentDisposition = "attachment; filename=\"" + resume.getName() + "\"";
+
+            // Determine Content-Type based on file type (default to octet-stream)
+            String contentType = "application/octet-stream"; // Default
+            if (resume.getName().endsWith(".pdf")) {
+                contentType = "application/pdf";
+            } else if (resume.getName().endsWith(".doc") || resume.getName().endsWith(".docx")) {
+                contentType = "application/msword";
+            }
+
+            return ResponseEntity.ok()
+                    .header(HttpHeaders.CONTENT_DISPOSITION, contentDisposition)
+                    .header(HttpHeaders.CONTENT_TYPE, contentType)
+                    .body(resource);
+
+        } catch (Exception e) {
+            System.out.println(e.getLocalizedMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body((Resource) e);
+        }
     }
 
     @GetMapping("/application/stats")

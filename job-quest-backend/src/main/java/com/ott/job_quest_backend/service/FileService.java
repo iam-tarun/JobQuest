@@ -10,7 +10,7 @@ import java.io.IOException;
 @Service
 public class FileService {
 
-    @Value("file_storage")
+    @Value("${file_storage}")
     private String uploadDir;
 
     public String saveFile(MultipartFile file, String companyName, String roleName) throws IOException {
