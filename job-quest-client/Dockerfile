@@ -15,7 +15,7 @@ FROM nginx:alpine
 WORKDIR /usr/share/nginx/html
 
 # Copy the built Angular app from the builder stage
-COPY --from=builder /app/dist/job-quest-client /usr/share/nginx/html
+COPY --from=builder /app/dist/job-quest-client/browser /usr/share/nginx/html
 
 # Copy a custom Nginx configuration (optional)
 COPY nginx.conf /etc/nginx/conf.d/nginx.conf
