@@ -7,5 +7,5 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { APP_BASE_HREF } from '@angular/common';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideHttpClient(withInterceptors([AuthInterceptor])), provideRouter(routes), {provide: APP_BASE_HREF, useValue: '/jobquest/'}]
+  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideHttpClient(withInterceptors([AuthInterceptor])), provideRouter(routes)]
 };

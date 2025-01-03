@@ -1,19 +1,24 @@
-# base image
-FROM openjdk:23-jdk-slim-bullseye
-
-RUN mkdir -p /app/files
-
-# change the directory
+# Stage 1: Build the Spring Boot application
+FROM maven:3.9.9-eclipse-temurin-23 AS builder
 WORKDIR /app
-# copy the required files
-COPY target/job-quest-backend-0.0.1-SNAPSHOT.jar app.jar
-# listen to port 8080 in the container
+
+# Copy pom.xml and download dependencies
+COPY pom.xml .
+RUN mvn dependency:go-offline
+
+# Copy the source code and build the application
+COPY src ./src
+RUN mvn package -DskipTests
+
+# Stage 2: Create a lightweight image to run the application
+FROM eclipse-temurin:17-jre-alpine
+WORKDIR /app
+
+# Copy the JAR file from the builder stage
+COPY --from=builder /app/target/*.jar app.jar
+
+# Expose the application port
 EXPOSE 8080
 
-# Add a health check for the application
-HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
-    CMD curl --fail http://localhost:8080/actuator/health || exit 1
-
-# command to run after the setup
+# Run the Spring Boot application
 ENTRYPOINT ["java", "-jar", "app.jar"]
-
