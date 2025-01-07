@@ -7,9 +7,10 @@ import { ApplyComponent } from './Screens/apply/apply.component';
 import { ApplicationsComponent } from './Screens/applications/applications.component';
 
 export const routes: Routes = [
-  {path: '', component: HomeComponent, canActivate: [AuthGuard]},
+  {path: '', component: HomeComponent, canActivate: [AuthGuard], pathMatch: 'full'},
   {path: 'apply', component: ApplyComponent, canActivate: [AuthGuard]},
   {path: 'applications', component: ApplicationsComponent, canActivate: [AuthGuard]},
   {path: 'sign-in', component: SignInComponent},
   {path: 'sign-up', component: SignUpComponent},
+  { path: '**', redirectTo: 'sign-in' },
 ];
