@@ -16,7 +16,6 @@
             "outputPath": "dist/job-quest-client",
             "index": "src/index.html",
             "browser": "src/main.ts",
-            "baseHref": "/jobquest/",
             "polyfills": [
               "zone.js"
             ],
