@@ -3,6 +3,7 @@ package com.ott.job_quest_backend.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -81,6 +82,7 @@ public class Application {
         return jobDescription;
     }
 
+
     public void setJobDescription(String jobDescription) {
         this.jobDescription = jobDescription;
     }
@@ -139,6 +141,8 @@ public class Application {
     @NotBlank
     private String resume;
 
+    @Size(max=5000)
+    @Column(length=5000)
     private String jobDescription;
     private String remarks;
     private String tag;
