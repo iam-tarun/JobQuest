@@ -1,5 +1,7 @@
 package com.ott.job_quest_backend.config;
 
+import com.ott.job_quest_backend.service.CustomOAuth2UserService;
+import com.ott.job_quest_backend.service.JWTService;
 import com.ott.job_quest_backend.service.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -18,6 +20,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -36,6 +39,15 @@ public class SecurityConfig {
     @Autowired
     private JwtFilter jwtFilter;
 
+    @Autowired
+    private JWTService jwtService;
+
+    @Autowired
+    private CustomOAuth2UserService customOAuth2UserService;
+
+    @Autowired
+    private CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
@@ -43,7 +55,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(cors -> cors.configurationSource(request -> {
                     CorsConfiguration configuration = new CorsConfiguration();
-                    configuration.setAllowedOrigins(Arrays.asList( "http://jobquest.tarunteja.dev","https://jobquest.tarunteja.dev","http://jobquest-frontend:80","http://127.0.0.1:80","http://127.0.0.1:8080")); // Allow Angular app
+                    configuration.setAllowedOrigins(Arrays.asList( "http://jobquest.tarunteja.dev","https://jobquest.tarunteja.dev","http://jobquest-frontend:80","http://127.0.0.1:80","http://127.0.0.1:8080", "http://localhost:4200")); // Allow Angular app
                     configuration.addAllowedMethod("*"); // Allow all methods
                     configuration.addAllowedHeader("*"); // Allow all headers
                     configuration.setAllowCredentials(true); // Allow credentials
@@ -52,11 +64,16 @@ public class SecurityConfig {
                     return source.getCorsConfiguration(request);
                 }))
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("/api/register", "/api/login")
+                        .requestMatchers("/api/register", "/api/login", "/login/oauth2/**")
                         .permitAll()
                         .anyRequest().authenticated())
-                .formLogin(Customizer.withDefaults())
-                .httpBasic(Customizer.withDefaults())
+                .oauth2Login(oauth2 -> oauth2.userInfoEndpoint(userInfo -> userInfo.userService(customOAuth2UserService)).successHandler((request, response, authentication) -> {
+                    OAuth2User oAuth2User = (OAuth2User)  authentication.getPrincipal();
+                    String jwtToken = jwtService.generateToken(oAuth2User.getAttribute("email"));
+                    response.addHeader("Set-Cookie", "jwtToken="+jwtToken + "; HttpOnly; Secure; Path=/; SameSite=Strict");
+                    response.sendRedirect("http://localhost:4200");
+                }))
+                .exceptionHandling(exception -> exception.authenticationEntryPoint(customAuthenticationEntryPoint))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
