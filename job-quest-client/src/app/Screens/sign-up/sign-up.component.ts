@@ -40,6 +40,6 @@ export class SignUpComponent {
   }
 
   signInWithGoogle():void {
-    window.location.href = 'http://localhost:8080/login/oauth2/authorization/google';
+    window.location.href = 'http://jobquest.tarunteja.dev/login/oauth2/authorization/google';
   }
 }
