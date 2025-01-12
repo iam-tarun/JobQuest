@@ -20,7 +20,7 @@ export class SignInComponent {
   onSignIn() {
     this.authService.login(this.username, this.password).subscribe({
       next: (token) => {
-        console.log(token);
+        // console.log(token);
         localStorage.setItem('jwtToken', token.token);
         this.router.navigate(['/']);
         this.authService.setLoggedInSubject()
@@ -30,4 +30,9 @@ export class SignInComponent {
       }
     })
   }
+
+  signInWithGoogle():void {
+    window.location.href = 'http://localhost:8080/login/oauth2/authorization/google';
+  }
+
 }

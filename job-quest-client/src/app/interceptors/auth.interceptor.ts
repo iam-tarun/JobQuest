@@ -1,24 +1,22 @@
 import { inject } from '@angular/core';
-import { HttpInterceptorFn } from '@angular/common/http';
-import { isTokenValid } from '../utils/validate_token';
+import { HttpInterceptorFn, HttpRequest, HttpHandlerFn, HttpEvent } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Observable, catchError, throwError } from 'rxjs';
 
-export const AuthInterceptor: HttpInterceptorFn = (req, next) => {
-  const token = localStorage.getItem('jwtToken');
+export const AuthInterceptor: HttpInterceptorFn = (req: HttpRequest<any>, next: HttpHandlerFn): Observable<HttpEvent<any>> => {
+  const router = inject(Router);
 
-  const isPublicEndpoint = req.url.includes('/login') || req.url.includes('/register');
+  const modifiedReq = req.clone({
+    withCredentials: true
+  });
 
-  if (token && !isPublicEndpoint && isTokenValid(token)) {
-    // Clone the request and add the Authorization header
-    const modifiedReq = req.clone({
-      headers: req.headers.set('Authorization', `Bearer ${token}`) 
-    });
-    return next(modifiedReq);
-  }
-
-  if (token && !isTokenValid(token) && !isPublicEndpoint) {
-    localStorage.removeItem('jwtToken');
-  }
-  // If no token, pass the original request
-  return next(req);
+  return next(modifiedReq).pipe(
+    catchError((error) => {
+      if (error.status === 401) {
+        // Redirect to the sign-in page on 401 Unauthorized
+        router.navigate(['/sign-in']);
+      }
+      return throwError(() => error); // Re-throw the error for further handling if needed
+    })
+  );
 };

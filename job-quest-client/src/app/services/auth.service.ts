@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, of } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -23,16 +23,12 @@ export class AuthService {
     this.isLoggedInSubject.next(true);
   }
 
-  isAuthenticated(): boolean {
-    const token = localStorage.getItem('jwtToken');
-    return !!token;
+  isAuthenticated(): Observable<boolean> {
+    return this.http.get<{authenticated: boolean; message: string}>(this.baseUrl+"/auth/status", {withCredentials: true}).pipe(map((response) => response.authenticated), catchError(() => of(false)));
   }
 
-  logout(): void {
-    localStorage.removeItem('jwtToken');
-    localStorage.removeItem('userDetails');
-    this.isLoggedInSubject.next(false);
-    this.router.navigate(['/sign-in'])
+  logout(): Observable<void> {
+    return this.http.post<void>(this.baseUrl+"/logout", {}, { withCredentials: true });
   }
 
   checkLoginStatus(): void {

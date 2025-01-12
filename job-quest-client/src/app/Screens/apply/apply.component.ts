@@ -34,7 +34,7 @@ export class ApplyComponent {
     if(this.applicationForm.valid) {
       const formValue = this.applicationForm.value;
 
-      console.log('Form Submitted:', formValue);
+      // console.log('Form Submitted:', formValue);
 
     // Access the file
       const file = formValue.resume; // Attach the file to FormData
@@ -53,12 +53,12 @@ export class ApplyComponent {
           this.applicationForm.reset();
         },
         error: (err) => {
-          console.log(err);
+          // console.log(err);
         }
       })
     }
     else {
-      console.log('Form is invalid');
+      // console.log('Form is invalid');
     }
   }
 

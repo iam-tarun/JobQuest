@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './Screens/navbar/navbar.component';
 import { AuthService } from './services/auth.service';
+import { map, Subscription, tap } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -20,14 +21,24 @@ export class AppComponent implements OnInit {
 
   constructor(private authService: AuthService) {}
 
-  isAuthenticated = false;
-
+  isAuthenticated: boolean = true;
+  private authSubscription?: Subscription;
   ngOnInit() {
-    this.authService.isLoggedIn$.subscribe((status) => {
-      this.isAuthenticated = status;
+    this.authSubscription = this.authService.isAuthenticated().subscribe({
+      next: (authenticated) => {
+        console.log('Authentication status:', authenticated);
+        this.isAuthenticated = authenticated;
+      },
+      error: (err) => {
+        console.error('Error checking authentication status:', err);
+        this.isAuthenticated = false;
+      }
     });
+  }
 
-    this.authService.checkLoginStatus();
+  ngOnDestroy(): void {
+    // Unsubscribe to prevent memory leaks
+    this.authSubscription?.unsubscribe();
   }
 
 }

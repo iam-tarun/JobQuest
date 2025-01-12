@@ -29,13 +29,17 @@ export class SignUpComponent {
     // Add your sign-up logic here
     this.authService.signup( { username: this.username, email: this.email, name: this.name, passwordHash: this.password}).subscribe({
       next: (res) => {
-        console.log(res)
+        // console.log(res)
         this.router.navigate(['/sign-in']);
       },
       error: (err) => {
-        console.log(err);
+        // console.log(err);
       }
     });
     this.errorMessage = '';
+  }
+
+  signInWithGoogle():void {
+    window.location.href = 'http://localhost:8080/login/oauth2/authorization/google';
   }
 }
