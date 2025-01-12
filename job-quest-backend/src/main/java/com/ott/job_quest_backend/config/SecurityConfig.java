@@ -71,7 +71,7 @@ public class SecurityConfig {
                     OAuth2User oAuth2User = (OAuth2User)  authentication.getPrincipal();
                     String jwtToken = jwtService.generateToken(oAuth2User.getAttribute("email"));
                     response.addHeader("Set-Cookie", "jwtToken="+jwtToken + "; HttpOnly; Secure; Path=/; SameSite=Strict");
-                    response.sendRedirect("http://localhost:4200");
+                    response.sendRedirect("https://jobquest.tarunteja.dev");
                 }))
                 .exceptionHandling(exception -> exception.authenticationEntryPoint(customAuthenticationEntryPoint))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
