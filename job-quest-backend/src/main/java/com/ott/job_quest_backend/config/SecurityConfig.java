@@ -64,7 +64,7 @@ public class SecurityConfig {
                     return source.getCorsConfiguration(request);
                 }))
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("/api/register", "/api/login", "/login/oauth2/**")
+                        .requestMatchers("/api/register", "/api/login", "/api/login/oauth2/**")
                         .permitAll()
                         .anyRequest().authenticated())
                 .oauth2Login(oauth2 -> oauth2.userInfoEndpoint(userInfo -> userInfo.userService(customOAuth2UserService)).successHandler((request, response, authentication) -> {
