@@ -55,7 +55,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(cors -> cors.configurationSource(request -> {
                     CorsConfiguration configuration = new CorsConfiguration();
-                    configuration.setAllowedOrigins(Arrays.asList( "http://jobquest.tarunteja.dev","https://jobquest.tarunteja.dev","http://jobquest-frontend:80","http://127.0.0.1:80","http://127.0.0.1:8080", "http://localhost:4200")); // Allow Angular app
+                    configuration.setAllowedOrigins(Arrays.asList( "https://jobquest.tarunteja.dev","http://127.0.0.1:80","http://127.0.0.1:8080")); // Allow Angular app
                     configuration.addAllowedMethod("*"); // Allow all methods
                     configuration.addAllowedHeader("*"); // Allow all headers
                     configuration.setAllowCredentials(true); // Allow credentials
@@ -67,7 +67,11 @@ public class SecurityConfig {
                         .requestMatchers("/api/register", "/api/login", "/api/login/oauth2/**")
                         .permitAll()
                         .anyRequest().authenticated())
-                .oauth2Login(oauth2 -> oauth2.userInfoEndpoint(userInfo -> userInfo.userService(customOAuth2UserService)).successHandler((request, response, authentication) -> {
+                .oauth2Login(oauth2 -> oauth2
+                        .authorizationEndpoint(authorization -> authorization.baseUri("/api/login/oauth2/authorization"))
+                        .redirectionEndpoint(redirection -> redirection.baseUri("/api/login/oauth2/code/*"))
+                        .userInfoEndpoint(userInfo -> userInfo.userService(customOAuth2UserService))
+                        .successHandler((request, response, authentication) -> {
                     OAuth2User oAuth2User = (OAuth2User)  authentication.getPrincipal();
                     String jwtToken = jwtService.generateToken(oAuth2User.getAttribute("email"));
                     response.addHeader("Set-Cookie", "jwtToken="+jwtToken + "; HttpOnly; Secure; Path=/; SameSite=Strict");
