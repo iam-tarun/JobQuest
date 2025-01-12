@@ -32,7 +32,7 @@ export class SignInComponent {
   }
 
   signInWithGoogle():void {
-    window.location.href = 'http://jobquest.tarunteja.dev/login/oauth2/authorization/google';
+    window.location.href = 'http://jobquest.tarunteja.dev/api/login/oauth2/authorization/google';
   }
 
 }
