@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormsModule, NgModel } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router, RouterModule } from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-sign-up',
@@ -40,6 +41,6 @@ export class SignUpComponent {
   }
 
   signInWithGoogle():void {
-    window.location.href = 'https://jobquest.tarunteja.dev/api/login/oauth2/authorization/google';
+    window.location.href = environment.google_sign_in;
   }
 }

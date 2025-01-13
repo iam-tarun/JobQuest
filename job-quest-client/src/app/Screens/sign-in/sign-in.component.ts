@@ -3,6 +3,7 @@ import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { FormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-sign-in',
@@ -19,20 +20,23 @@ export class SignInComponent {
 
   onSignIn() {
     this.authService.login(this.username, this.password).subscribe({
-      next: (token) => {
-        // console.log(token);
-        localStorage.setItem('jwtToken', token.token);
-        this.router.navigate(['/']);
-        this.authService.setLoggedInSubject()
-      },
-      error: () => {
-        this.errorMessage = 'Invalid username or password';
+      next: () => {
+        this.authService.isAuthenticated().subscribe({
+          next: (authenticated) => {
+            if (authenticated) {
+              this.router.navigate(['/']);
+            }
+          },
+          error:() => {
+            this.errorMessage = "Invalid Password or Username";
+          }
+        });
       }
-    })
+    });
   }
 
   signInWithGoogle():void {
-    window.location.href = 'https://jobquest.tarunteja.dev/api/login/oauth2/authorization/google';
+    window.location.href = environment.google_sign_in;
   }
 
 }
