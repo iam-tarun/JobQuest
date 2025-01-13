@@ -45,6 +45,10 @@ td {
   padding-left: 1rem;
 }
 
+td input {
+  width: 60px;
+}
+
 th, td {
   border-bottom: 1px solid #c3c3c3;
 }
