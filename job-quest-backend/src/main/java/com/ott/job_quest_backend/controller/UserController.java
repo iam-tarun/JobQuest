@@ -26,13 +26,12 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public Map<String, String> login(@RequestBody User user) {
+    public void  login(@RequestBody User user, HttpServletResponse response) {
 
         String token = service.verify(user);
+        response.addHeader("Set-Cookie", "jwtToken="+token + "; HttpOnly; Secure; Path=/; SameSite=Strict");
 
-            Map<String, String> responseBody = new HashMap<>();
-            responseBody.put("token", token);
-            return responseBody;
+        response.setStatus(HttpServletResponse.SC_OK);
 
     }
 
