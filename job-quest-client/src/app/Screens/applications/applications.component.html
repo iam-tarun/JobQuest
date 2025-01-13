@@ -9,7 +9,7 @@
         <tr>
           <th>Role</th>
           <th>Company</th>
-          <th>Date</th>
+          <th class="desktop" >Date</th>
           <th>Status</th>
           <th class="desktop" >Remarks</th>
           <th class="desktop" >Tag</th>
@@ -23,9 +23,9 @@
         <tr *ngFor="let application of applications; let i = index" >
           <td> <input type="text" [(ngModel)]="application.roleName" [disabled]="!isEditing[i]" /> </td>
           <td> <input type="text" [(ngModel)]="application.companyName" [disabled]="!isEditing[i]" /> </td>
-          <td> <input type="text" [(ngModel)]="application.dateOfApplication" [disabled]="!isEditing[i]" /> </td>
+          <td class="desktop" > <input type="text" [(ngModel)]="application.dateOfApplication" [disabled]="!isEditing[i]" /> </td>
           <td> {{ application.status }}</td>
-          <td> <input type="text" [(ngModel)]="application.remarks" [disabled]="!isEditing[i]" /> </td>
+          <td class="desktop" > <input type="text" [(ngModel)]="application.remarks" [disabled]="!isEditing[i]" /> </td>
           <td class="desktop" > <input type="text" [(ngModel)]="application.tag" [disabled]="!isEditing[i]" /> </td>
           <td class="desktop" > <input type="text" [(ngModel)]="application.platform" [disabled]="!isEditing[i]" /> </td>
           <td class="desktop" > <input type="text" [(ngModel)]="application.jobDescription" [disabled]="!isEditing[i]" /> </td>
