@@ -16,14 +16,14 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<div [ngClass]="{'main-wrapper': isAuthenticated, '': !isAuthenticated}">
+<div [ngClass]="{'main-wrapper grid': isAuthenticated, '': !isAuthenticated}">
   <div *ngIf="isAuthenticated" class="header" >
     <h1>JOB QUEST</h1>
   </div>
   <div class="nav-wrapper" *ngIf="isAuthenticated">
     <app-navbar  ></app-navbar>
   </div>
-  <div [ngClass]="{'content-wrapper': isAuthenticated, '': !isAuthenticated}" ><router-outlet /></div>
+  <div id="wrapper" [ngClass]="{'content-wrapper': isAuthenticated, '': !isAuthenticated}" ><router-outlet /></div>
   <div *ngIf="isAuthenticated" class="footer-wrapper" ></div>
 </div>
 

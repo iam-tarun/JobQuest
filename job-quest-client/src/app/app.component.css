@@ -1,35 +1,58 @@
-.main-wrapper {
+/* base styles */
+.grid {
   display: grid;
-  grid-template-areas:
-  "sidebar header"
-  "sidebar main"
-  "footer footer";
-  grid-template-columns: 200px auto;
-  height: 100vh;
-  grid-template-rows: 80px 1fr 60px;
+  grid-template-columns: repeat(8 1fr);
 }
 
-.header { 
-  grid-area: header;
-  background-color: #242629;
+/* base mobile styles */
+.header {
+  grid-column: 1/9;
+  grid-row: 1/2;
   text-align: center;
-  color: #c3c3c3;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid #303336;
 }
 
 .nav-wrapper {
-  grid-area: sidebar;
+  grid-column: 1/9;
+  grid-row: 2/3;
+  text-align: center;
   background-color: #303336;
 }
 
-.content-wrapper {
-  grid-area: main;
+#wrapper {
+  grid-column: 1/9;
+  grid-row: 3/4;
+  text-align: center;
   background-color: white;
+  color: black;
 }
 
-.footer-wrapper {
-  grid-area: footer;
-  background-color: #242629;
-  border-top: 1px solid #303336;
+app-sign-in {
+  background-color: black;
+  color: white;
+}
+
+/* small tablet styles */
+@media screen and (min-width: 620px) {
+
+}
+
+/* large tablet laptop styles */
+@media screen and (min-width: 960px) {
+  .nav-wrapper {
+    grid-column: 1/2;
+    grid-row: 2/3;
+  }
+  #wrapper {
+    grid-column: 2/9;
+    grid-row: 2/3;
+  }
+  .grid {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}
+
+/* large desktop styles */
+@media screen and (min-width: 1200px) {
+  
 }

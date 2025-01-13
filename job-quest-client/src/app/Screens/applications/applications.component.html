@@ -1,22 +1,22 @@
-  <section class="table-wrapper" >
-    <div class="search-wrapper" >
+  <div class="" >
+    <div class="search-wrapper grid" >
       <div class="search-container" >
-        <input type="text" id="filterInput" placeholder="Search by date, status, platform, company, or tags...">
+        <input type="text" id="filterInput" placeholder="Search">
       </div>
     </div>
-    <table>
+    <table id="applications-table">
       <thead>
         <tr>
           <th>Role</th>
           <th>Company</th>
           <th>Date</th>
           <th>Status</th>
-          <th>Remarks</th>
-          <th>Tag</th>
-          <th>Platfrom</th>
-          <th>Job Description</th>
+          <th class="desktop" >Remarks</th>
+          <th class="desktop" >Tag</th>
+          <th class="desktop" >Platfrom</th>
+          <th class="desktop" >Job Description</th>
           <th>Resume</th>
-          <th>Actions</th>
+          <th class="desktop" >Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -26,16 +26,16 @@
           <td> <input type="text" [(ngModel)]="application.dateOfApplication" [disabled]="!isEditing[i]" /> </td>
           <td> {{ application.status }}</td>
           <td> <input type="text" [(ngModel)]="application.remarks" [disabled]="!isEditing[i]" /> </td>
-          <td> <input type="text" [(ngModel)]="application.tag" [disabled]="!isEditing[i]" /> </td>
-          <td> <input type="text" [(ngModel)]="application.platform" [disabled]="!isEditing[i]" /> </td>
-          <td> <input type="text" [(ngModel)]="application.jobDescription" [disabled]="!isEditing[i]" /> </td>
+          <td class="desktop" > <input type="text" [(ngModel)]="application.tag" [disabled]="!isEditing[i]" /> </td>
+          <td class="desktop" > <input type="text" [(ngModel)]="application.platform" [disabled]="!isEditing[i]" /> </td>
+          <td class="desktop" > <input type="text" [(ngModel)]="application.jobDescription" [disabled]="!isEditing[i]" /> </td>
           <td (click)="openResume(application.id)" > open
           </td>
-          <td>
+          <td class="desktop" >
             <mat-icon  class="icon" *ngIf="!isEditing[i]" (click)="enableEditing(i)" >edit</mat-icon>
             <mat-icon class="icon" *ngIf="isEditing[i]" (click)="saveChanges(i)" >save</mat-icon>
             <mat-icon (click)="deleteApplication(application.id)" class="icon" >delete</mat-icon> </td>
         </tr>
       </tbody>
     </table>
-  </section>
+  </div>

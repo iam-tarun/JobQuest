@@ -1,82 +1,62 @@
+/* base styles */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(8 1fr);
+}
+.signup {
+  background-color: black;
+  color: white;
+}
+/* base mobile styles */
 form {
-  background-color: white;
-  padding: 30px 40px;
-  border-radius: 10px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow for floating effect */
+  margin: 20px auto;
   width: 100%;
-  max-width: 400px; /* Limit width */
-  display: flex;
-  flex-direction: column; /* Stack form elements */
-  gap: 15px; /* Space between inputs */
-  margin-inline: auto;
-  margin-top: 2rem;
 }
 
-h2 {
-  margin-top: 0;
-  color: #333; /* Dark text color */
-  text-align: center;
+.form-group {
+  grid-column: 1/9;
+  margin-bottom: 20px;
 }
 
-/* Input Fields */
 label {
-  font-weight: bold;
-  margin-bottom: 5px;
-  color: #444; /* Medium gray for labels */
+  text-align: left;
+  grid-column: 2/4;
 }
 
 input {
-  padding: 10px;
-  border: 1px solid #ccc; /* Light gray border */
-  border-radius: 5px;
-  font-size: 14px;
-  width: 100%;
-  box-sizing: border-box; /* Ensure padding doesn’t affect width */
-  transition: border-color 0.3s;
+  grid-column: 5/8;
+  margin-right: 20px;
 }
 
-input:focus {
-  border-color: #007bff; /* Primary blue on focus */
-  outline: none;
-}
-
-/* Button Styles */
 button {
-  background-color: #007bff; /* Primary blue */
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-button:hover {
-  background-color: #0056b3; /* Darker blue on hover */
-}
-
-button:disabled {
-  background-color: #bbb; /* Disabled state color */
-  cursor: not-allowed;
-}
-
-/* Error Message */
-.error {
-  color: #d9534f; /* Bootstrap red for errors */
-  font-size: 14px;
-  text-align: center;
-}
-
-.signInLink {
-  margin-top: 2rem;
-  width: 100%;
-  margin-inline: auto;
-  text-align: center;
+  grid-column: 4/6;
+  margin-block: 10px;
 }
 
 a {
   text-decoration: none;
-  color: white;
-  text-align: center;
+  color: #ccc;
+}
+
+/* small tablet styles */
+@media screen and (min-width: 620px) {
+
+}
+
+/* large tablet laptop styles */
+@media screen and (min-width: 960px) {
+  .grid {
+    max-width: 600px;
+  }
+  .signup {
+    min-height: 90vh;
+  }
+  .form-group {
+    margin: 20px auto;
+  }
+}
+
+/* large desktop styles */
+@media screen and (min-width: 1200px) {
+  
 }

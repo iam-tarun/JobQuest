@@ -25,7 +25,7 @@ export class SignInComponent {
         this.router.navigate(['/']);
         this.authService.setLoggedInSubject()
       },
-      error: (error) => {
+      error: () => {
         this.errorMessage = 'Invalid username or password';
       }
     })
