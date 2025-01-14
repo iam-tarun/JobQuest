@@ -22,6 +22,8 @@ export class ApplyComponent {
     jobDescription : new FormControl('', Validators.required),
     remarks : new FormControl(''),
     tag : new FormControl(''),
+    link: new FormControl(''),
+    creds: new FormControl('')
   })
 
   onFileSelected(event: any) {
