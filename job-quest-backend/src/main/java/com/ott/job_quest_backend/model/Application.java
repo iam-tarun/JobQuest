@@ -145,7 +145,27 @@ public class Application {
     @Column(length=5000)
     private String jobDescription;
     private String remarks;
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    public String getCreds() {
+        return creds;
+    }
+
+    public void setCreds(String creds) {
+        this.creds = creds;
+    }
+
     private String tag;
+
+    private String link;
+    private String creds;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt = new Date();

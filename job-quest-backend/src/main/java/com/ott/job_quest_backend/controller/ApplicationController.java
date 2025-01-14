@@ -43,8 +43,9 @@ public class ApplicationController {
             @RequestParam("platform") String platform,
             @RequestParam("status") ApplicationStatus status,
             @RequestParam("resume") MultipartFile resume,
-            @RequestParam("dateOfApplication") String date
-
+            @RequestParam("dateOfApplication") String date,
+            @RequestParam("link") String link,
+            @RequestParam("creds") String creds
     ) throws IOException, ParseException {
 
 
@@ -61,6 +62,8 @@ public class ApplicationController {
         application.setPlatform(platform);
         String resumePath = fileService.saveFile(resume, companyName, roleName);
         application.setResume(resumePath);
+        application.setLink(link);
+        application.setCreds(creds);
 
         return applicationService.createApplication(application);
     }
