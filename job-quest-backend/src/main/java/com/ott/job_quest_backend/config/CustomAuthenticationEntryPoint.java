@@ -20,7 +20,7 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
             response.getWriter().write("Unauthorized");
         } else {
             // Redirect to login for non-API requests
-            response.sendRedirect("/oauth2/authorization/google");
+            response.sendRedirect("/api/login/oauth2/authorization/google");
         }
     }
 }
