@@ -15,6 +15,15 @@
   grid-row: 1/2;
 }
 
+.search-container input {
+  background-color: #121212;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.4);
+  border-radius: 5px;
+  padding: 10px 20px;
+}
+
 .search-wrapper input {
   margin-block: 20px;
   width: 90%;
