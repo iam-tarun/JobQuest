@@ -2,6 +2,8 @@
 
 **JobQuest** is a web application that helps users organize, track, and manage their job applications efficiently. It offers tools to log applications, visualize progress, and keep reminders for follow-ups.
 
+-- check out the deployment [jobquest.tarunteja.dev](https://jobquest.tarunteja.dev)
+
 ---
 
 ## Features
