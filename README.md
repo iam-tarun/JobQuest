@@ -13,7 +13,7 @@
 - **Search & Filters**: Search by job title, filter by status or date range. (In Development)
 - **Reminders**: Set follow-up and interview reminders. (In Development)
 - **Analytics**: Track application trends, response rates, and success ratios. (In Development)
-- **Authentication**: Secure login and registration.
+- **Authentication**: Secure login and registration and Google Auth.
 
 ---
 
