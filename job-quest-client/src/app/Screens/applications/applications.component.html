@@ -18,7 +18,7 @@
           <th class="desktop" >Link</th>
           <th class="desktop" >Creds</th>
           <th>Resume</th>
-          <th class="desktop" >Actions</th>
+          <th >Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -43,7 +43,7 @@
           <td class="desktop" > <input type="text" [(ngModel)]="application.creds" [disabled]="!isEditing[i]" /> </td>
           <td (click)="openResume(application.id)" > open
           </td>
-          <td class="desktop" >
+          <td >
             <mat-icon  class="icon" *ngIf="!isEditing[i]" (click)="enableEditing(i)" >edit</mat-icon>
             <mat-icon class="icon" *ngIf="isEditing[i]" (click)="saveChanges(i)" >save</mat-icon>
             <mat-icon (click)="deleteApplication(application.id)" class="icon" >delete</mat-icon> </td>
