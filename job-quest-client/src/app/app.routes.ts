@@ -8,13 +8,13 @@ import { ApplicationsComponent } from './Screens/applications/applications.compo
 
 export const routes: Routes = [
   {path: '', component: HomeComponent,
-    // canActivate: [AuthGuard], 
+    canActivate: [AuthGuard], 
     pathMatch: 'full'},
   {path: 'apply', component: ApplyComponent, 
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
 },
   {path: 'applications', component: ApplicationsComponent, 
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {path: 'sign-in', component: SignInComponent},
   {path: 'sign-up', component: SignUpComponent},
