@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
         this.isAuthenticated = true;
       },
       error: () => {
-        this.isAuthenticated = true;
+        this.isAuthenticated = false;
       }
     });
   }
