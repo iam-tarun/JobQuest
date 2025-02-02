@@ -19,7 +19,7 @@
   background-color: #121212;
   border: none;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.9);
   border-radius: 5px;
   padding: 10px 20px;
 }
@@ -42,14 +42,14 @@
 th {
   text-align: left;
   padding-block: 0.5rem;
-  color: #333;
+  color: #f2f2f2;
   font-weight: 500;
   padding-left: 1rem;
 }
 
 td {
   padding-block: 0.6rem;
-  color: #404040;
+  color: #f0f0f0;
   font-size: 0.8rem;
   padding-left: 1rem;
 }
