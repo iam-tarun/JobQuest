@@ -11,6 +11,8 @@
   margin: 10px;
   color: #e6e6e6;
   text-align: center;
+  width: 100px;
+  box-shadow: 2px 3px 9px rgba(255, 255, 255, 0.3);
 }
 
 /* base mobile styles */
