@@ -7,6 +7,9 @@ import com.ott.job_quest_backend.model.User;
 import com.ott.job_quest_backend.repo.ApplicationRepo;
 import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -45,9 +48,11 @@ public class ApplicationService {
         return repo.save(application);
     }
 
-    public List<Application> allApplications() {
+    public Page<Application> allApplications(int start) {
+        int limit = 15;
         int userId = userService.currentUserId();
-        return repo.findByUserId(userId);
+        PageRequest pageRequest = PageRequest.of(start, limit, Sort.by("id").descending());
+        return repo.findByUserId(userId, pageRequest);
     }
 
     public List<Application> applicationsByStatus(ApplicationStatus status) {
@@ -58,7 +63,7 @@ public class ApplicationService {
     public Map<String, Integer> applicationStats() {
         int userId = userService.currentUserId();
         Map<String, Integer> result = new HashMap<>();
-        result.put("total", repo.findByUserId(userId).size());
+        result.put("total", repo.findByUser(userId).size());
         result.put("rejected", repo.findByUserIdAndStatus(userId, ApplicationStatus.REJECTED).size());
         return result;
     }

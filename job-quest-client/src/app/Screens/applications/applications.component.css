@@ -76,6 +76,14 @@ tr:last-child td {
 }
 
 
+.pagination-controls {
+  grid-column: 1/9;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+
+
 /* small tablet styles */
 @media screen and (min-width: 620px) {
 

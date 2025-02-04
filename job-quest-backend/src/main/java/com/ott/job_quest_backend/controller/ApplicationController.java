@@ -7,6 +7,7 @@ import com.ott.job_quest_backend.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -74,8 +75,8 @@ public class ApplicationController {
     }
 
     @GetMapping("/application")
-    public List<Application> fetchApplications() {
-        return applicationService.allApplications();
+    public Page<Application> fetchApplications(@RequestParam(defaultValue = "0") int start) {
+        return applicationService.allApplications(start);
     }
 
     @GetMapping("/application/resume/{id}")
