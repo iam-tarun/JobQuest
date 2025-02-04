@@ -13,7 +13,8 @@ export class Application {
   resume: string;
   createdAt: Date;
   updatedAt: Date;
-
+  link: string;
+  creds: string;
 
   constructor(
     roleName: string,
@@ -27,6 +28,8 @@ export class Application {
     resume: string,
     createdAt: Date,
     updatedAt: Date,
+    link: string,
+    creds: string,
     id: number
   ) {
     this.roleName = roleName;
@@ -41,6 +44,8 @@ export class Application {
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
     this.id = id;
+    this.link = link;
+    this.creds = creds;
   }
 
 }

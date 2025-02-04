@@ -5,25 +5,19 @@
 }
 
 /* base mobile styles */
-.header {
-  grid-column: 1/9;
-  grid-row: 1/2;
-  text-align: center;
-}
+
 
 .nav-wrapper {
   grid-column: 1/9;
   grid-row: 2/3;
   text-align: center;
-  background-color: #303336;
+  background-color: #1E1E1E;
 }
 
 #wrapper {
   grid-column: 1/9;
   grid-row: 3/4;
   text-align: center;
-  background-color: white;
-  color: black;
 }
 
 app-sign-in {
@@ -38,18 +32,6 @@ app-sign-in {
 
 /* large tablet laptop styles */
 @media screen and (min-width: 960px) {
-  .nav-wrapper {
-    grid-column: 1/2;
-    grid-row: 2/3;
-  }
-  #wrapper {
-    grid-column: 2/9;
-    grid-row: 2/3;
-  }
-  .grid {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
 }
 
 /* large desktop styles */

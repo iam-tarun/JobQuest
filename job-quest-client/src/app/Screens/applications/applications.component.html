@@ -1,41 +1,65 @@
-  <div class="" >
-    <div class="search-wrapper grid" >
-      <div class="search-container" >
-        <input type="text" id="filterInput" placeholder="Search">
-      </div>
+<div class="">
+  <div class="search-wrapper grid">
+    <div class="search-container">
+      <input type="text" id="filterInput" placeholder="Search">
     </div>
-    <table id="applications-table">
-      <thead>
-        <tr>
-          <th>Role</th>
-          <th>Company</th>
-          <th class="desktop" >Date</th>
-          <th>Status</th>
-          <th class="desktop" >Remarks</th>
-          <th class="desktop" >Tag</th>
-          <th class="desktop" >Platfrom</th>
-          <th class="desktop" >Job Description</th>
-          <th>Resume</th>
-          <th class="desktop" >Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let application of applications; let i = index" >
-          <td> <input type="text" [(ngModel)]="application.roleName" [disabled]="!isEditing[i]" /> </td>
-          <td> <input type="text" [(ngModel)]="application.companyName" [disabled]="!isEditing[i]" /> </td>
-          <td class="desktop" > <input type="text" [(ngModel)]="application.dateOfApplication" [disabled]="!isEditing[i]" /> </td>
-          <td> {{ application.status }}</td>
-          <td class="desktop" > <input type="text" [(ngModel)]="application.remarks" [disabled]="!isEditing[i]" /> </td>
-          <td class="desktop" > <input type="text" [(ngModel)]="application.tag" [disabled]="!isEditing[i]" /> </td>
-          <td class="desktop" > <input type="text" [(ngModel)]="application.platform" [disabled]="!isEditing[i]" /> </td>
-          <td class="desktop" > <input type="text" [(ngModel)]="application.jobDescription" [disabled]="!isEditing[i]" /> </td>
-          <td (click)="openResume(application.id)" > open
-          </td>
-          <td class="desktop" >
-            <mat-icon  class="icon" *ngIf="!isEditing[i]" (click)="enableEditing(i)" >edit</mat-icon>
-            <mat-icon class="icon" *ngIf="isEditing[i]" (click)="saveChanges(i)" >save</mat-icon>
-            <mat-icon (click)="deleteApplication(application.id)" class="icon" >delete</mat-icon> </td>
-        </tr>
-      </tbody>
-    </table>
   </div>
+
+  <table id="applications-table">
+    <thead>
+      <tr>
+        <th>Role</th>
+        <th>Company</th>
+        <th class="desktop">Date</th>
+        <th>Status</th>
+        <th class="desktop">Remarks</th>
+        <th class="desktop">Tag</th>
+        <th class="desktop">Platform</th>
+        <th class="desktop">Job Description</th>
+        <th class="desktop">Link</th>
+        <th class="desktop">Creds</th>
+        <th>Resume</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let application of paginatedApplications; let i = index">
+        <td><input type="text" [(ngModel)]="application.roleName" [disabled]="!isEditing[i]" /></td>
+        <td><input type="text" [(ngModel)]="application.companyName" [disabled]="!isEditing[i]" /></td>
+        <td class="desktop"><input type="text" [(ngModel)]="application.dateOfApplication" [disabled]="!isEditing[i]" /></td>
+        <td>
+          <select [(ngModel)]="application.status" [disabled]="!isEditing[i]">
+            <option value="APPLIED">Applied</option>
+            <option value="IN_PROCESS">In Process</option>
+            <option value="INTERVIEWS">Interviews</option>
+            <option value="REJECTED">Rejected</option>
+            <option value="NOT_APPLIED">Not Applied</option>
+          </select>
+        </td>
+        <td class="desktop"><input type="text" [(ngModel)]="application.remarks" [disabled]="!isEditing[i]" /></td>
+        <td class="desktop"><input type="text" [(ngModel)]="application.tag" [disabled]="!isEditing[i]" /></td>
+        <td class="desktop"><input type="text" [(ngModel)]="application.platform" [disabled]="!isEditing[i]" /></td>
+        <td class="desktop"><input type="text" [(ngModel)]="application.jobDescription" [disabled]="!isEditing[i]" /></td>
+        <td class="desktop"><input type="text" [(ngModel)]="application.link" [disabled]="!isEditing[i]" /></td>
+        <td class="desktop"><input type="text" [(ngModel)]="application.creds" [disabled]="!isEditing[i]" /></td>
+        <td (click)="openResume(application.id)">open</td>
+        <td>
+          <mat-icon class="icon" *ngIf="!isEditing[i]" (click)="enableEditing(i)">edit</mat-icon>
+          <mat-icon class="icon" *ngIf="isEditing[i]" (click)="saveChanges(i)">save</mat-icon>
+          <mat-icon (click)="deleteApplication(application.id)" class="icon">delete</mat-icon>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Custom Pagination Controls -->
+  <div class="pagination-controls">
+    <button (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
+    <button *ngFor="let page of [].constructor(totalPages); let i = index"
+            [class.active]="currentPage === (i + 1)"
+            (click)="goToPage(i + 1)">
+      {{ i + 1 }}
+    </button>
+    <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+  </div>
+</div>

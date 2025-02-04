@@ -8,12 +8,18 @@
   grid-column: 1/9;
   grid-row: 1/2;
   text-align: center;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.sect {
+  margin-bottom: 20px;;
 }
 
 .job-application {
   grid-column: 1/9;
   grid-row: 2/3;
 }
+
 
 .form-group {
   margin-inline: 10px;
@@ -32,19 +38,37 @@ hr {
 
 label {
   text-align: left;
-  grid-column: 1/5;
+  grid-column: 1/9;
+  color: rgba(255, 255, 255, 0.8);
+  width: 100%;
 }
 
 input, select {
-  grid-column: 5/9;
-  width: 90%;
+  grid-column: 1/9;
+  grid-row: 2/3;
+  margin-right: 20px;
+  background-color: #121212;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 16px 8px;
+  margin: 4px 0;
+  border-radius: 0px;
+  color: #ccc;
 }
+ hr {
+  display: none;
+ }
+
+ button {
+  border-radius: 5px;
+  margin-inline: 10px
+ }
 
 .btn-reset {
   grid-column: 1/3;
 }
 .btn-submit {
-  grid-column: 7/9;
+  grid-column: 6/8;
 }
 
 
@@ -55,9 +79,27 @@ input, select {
 
 /* large tablet laptop styles */
 @media screen and (min-width: 960px) {
-  .grid {
-    max-width: 1200px;
-    margin: 0 auto;
+  label {
+    grid-column: 1/5;
+    grid-row: 1/2;
+  }
+
+  input, select {
+    grid-column: 5/9;
+    grid-row: 1/2;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  hr {
+    display: block;
+  }
+
+  .form-group {
+    margin-bottom: 5rem;
+  }
+
+  form {
+    padding-inline: 20px
   }
 }
 
