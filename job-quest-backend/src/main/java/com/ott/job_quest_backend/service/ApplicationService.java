@@ -63,7 +63,7 @@ public class ApplicationService {
     public Map<String, Integer> applicationStats() {
         int userId = userService.currentUserId();
         Map<String, Integer> result = new HashMap<>();
-        result.put("total", repo.findByUser(userId).size());
+        result.put("total", repo.findByUserId(userId).size());
         result.put("rejected", repo.findByUserIdAndStatus(userId, ApplicationStatus.REJECTED).size());
         return result;
     }
