@@ -13,7 +13,7 @@ import java.util.List;
 public interface ApplicationRepo extends JpaRepository<Application, Integer> {
     Page<Application> findByUserId(int user, Pageable pageable);
 
-    List<Application> findByUser(int user);
+    List<Application> findByUserId(int user);
 
     List<Application> findByUserIdAndStatus(int user, ApplicationStatus status);
 }
