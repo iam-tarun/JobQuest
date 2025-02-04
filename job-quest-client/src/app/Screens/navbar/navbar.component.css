@@ -4,21 +4,18 @@
   grid-template-columns: repeat(8 1fr);
 }
 
-.bottom:hover {
-  background-color: #262626;
-}
-li:hover {
-  background-color: #262626;
-}
-
 li {
   padding: 10px 5px;
   border-radius: 10px;
 }
 
+li:hover {
+  color: #2563EB;
+}
+
 
 .active {
-  background-color: #262626;
+  color: #67E8F9;
 }
 
 /* base mobile styles */

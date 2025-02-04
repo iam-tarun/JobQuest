@@ -5,17 +5,13 @@
 }
 
 /* base mobile styles */
-.header {
-  grid-column: 1/9;
-  grid-row: 1/2;
-  text-align: center;
-}
+
 
 .nav-wrapper {
   grid-column: 1/9;
   grid-row: 2/3;
   text-align: center;
-  background-color: #303336;
+  background-color: #1E1E1E;
 }
 
 #wrapper {
